@@ -32,10 +32,22 @@ const app = express();
 const path = require("path");
 const router = express.Router();
 
-//TO VIEW PUG
+//TO VIEW PUG(setting templating engine)
 app.set("view engine","pug")
 app.set("views", path.join(__dirname,"views"))
 
+router.get("/", (req,res)=>{
+  res.render("employees")
+})
+
+
+router.get("/about", (req,res)=>{
+  res.render("about",{title: "Hello",message: "How are you doing"})
+})
+
+router.get("/contact", (req,res)=>{
+  res.render("contact")
+})
 
 
 
@@ -45,23 +57,29 @@ app.set("views", path.join(__dirname,"views"))
 
 
 
-// ===================================
-//__dirname will resolve project folder
-router.get("/", (req,res)=>(
-  res.sendFile(path.join(__dirname + "/index.html"))
-));
+// // ===================================
+// //__dirname will resolve project folder
+// router.get("/", (req,res)=>(
+//   res.sendFile(path.join(__dirname + "/index.html"))
+// ));
 
-router.get("/about", (req,res)=>(
-  res.sendFile(path.join(__dirname + "/about.html"))
-));
-
-
+// router.get("/about", (req,res)=>(
+//   res.sendFile(path.join(__dirname + "/about.html"))
+// ));
 
 
-//add the router
-app.use("/",router)
-app.use("/about",router)
+
+
+// //add the router
+// app.use("/",router)
+// app.use("/about",router)
 
 
 //step2;set up a server
-app.listen(port, ()=> console.log(`Listening on port ${port}`))
+// Set up the server
+app.use('/', router);
+app.use('/about', router);
+app.use('/contact', router);
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
+});
