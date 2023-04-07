@@ -62,3 +62,15 @@ MVC
 +consists of views folder, models, and controller.
 +views habours templates, routes act as the linker/contoller.
 +node see files as modules.
+
+ASYNC-WAIT
+*synchronous means one after another
+*asynchronous means can happen simultaneously.
+*a function passed as an arg in another function is called a callback.
+
+*******MONGODB********
+`npm install mongoose`
+-we use mongose for database connection, its a middleware.
+-`npm install dotenv` to install environment for managing the application.
+-when data is sent from frontend to backend, its not recognised, we install a package called 'body-parser' which gets data from from end and formats it in a way that backend can handle.`npm install body-parser`
+-since database doesn't act synchronously, we use 'async-await' such that we can wait for the operation as our applicationnis doing something else.
